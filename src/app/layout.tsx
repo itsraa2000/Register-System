@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import UserProvider from "@/components/Provider/UserProvider";
-import RegisterModal from "@/components/Modal/RegisterModal";
+
 
 export const metadata: Metadata = {
   title: "Secret App",
