@@ -57,8 +57,8 @@ const Input: React.FC<InputProps> = ({
                     disbled:opacity-70
                     disabled:cursor-not-allowed
                     ${formatPrice ? 'pl-9' : 'pl-4'}
-                    ${errors[id] ? 'border-blue' : 'border-white'}
-                    ${errors[id] ? 'focus:border-blue' : 'focus:border-black'}
+                    ${errors[id] ? 'border-blue' : 'border-blue'}
+                    ${errors[id] ? 'focus:border-blue' : 'focus:border-blue'}
                     `}
             />
             <label className={`
@@ -75,7 +75,7 @@ const Input: React.FC<InputProps> = ({
                     peer-placeholder-shown:translate-y-0
                     peer-focus:scale-75
                     peer-ficus:-translate-y-4
-                    ${errors[id] ? 'text-blue' : 'text-white'}
+                    ${errors[id] ? 'text-blue' : 'text-blue'}
                 `}>
                 {label}
             </label>
