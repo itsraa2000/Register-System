@@ -11,7 +11,6 @@ import {
 } from 'react-hook-form';
 
 import useRgisterModal from '@/app/hooks/useRegisterModal'
-import { log } from "console";
 import Modal from "./Modal";
 import Heading from "../Heading/Heading";
 import Input from "../inputs/Input";
@@ -81,6 +80,32 @@ const RegisterModal = () => {
              <Input 
                 id="email"
                 label="Email"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
+             />
+             <Input 
+                id="username"
+                label="Username"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
+             />
+            <Input 
+                id="password"
+                label="Password"
+                type="password"
+                disabled={isLoading}
+                register={register}
+                errors={errors}
+                required
+             />
+            <Input 
+                id="confirmPassword"
+                label="Confirm Password"
+                type="password"
                 disabled={isLoading}
                 register={register}
                 errors={errors}

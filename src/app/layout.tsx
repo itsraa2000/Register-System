@@ -3,6 +3,7 @@ import "./globals.css";
 import UserProvider from "@/components/Provider/UserProvider";
 import ToasterProvider from "@/components/Provider/ToastProvider";
 import RegisterModal from "@/components/Modal/RegisterModal";
+import LoginModal from "@/components/Modal/LoginModal";
 
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
         <UserProvider>
           <ToasterProvider />
           <RegisterModal />
+          <LoginModal />
         </UserProvider>
         {children}
       </body>
