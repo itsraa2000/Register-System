@@ -32,6 +32,7 @@ const RegisterModal = () => {
             name:'',
             email:'',
             password:'',
+            confirmPassword:'',
         }
     });
 

@@ -76,20 +76,22 @@ const Modal: React.FC<ModalProps> = ({
                  `}>
                     <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/* Header */}
-                        <div className="flex flex-col items-center p-6 rounded-t justify-center relative border-b-[1px]">
+                        <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
                             <button 
                                 onClick={handleClose}
-                                className="p1 border-0 hover:opacity-70 transition absolute right-5 top-5">
+                                className="p1 border-0 hover:opacity-70 transition absolute right-9">
                                 <IoMdClose size={18} />
                             </button>
-                            <div className="text-lg left-5 top-5 absolute">
+                            <div className="text-lg absolute">
                                 {title}
                             </div>
+                        </div>
                             {/* Body */}
-                            <div className="relative py-6 flex-auto">
+                            <div className="text-lg px-32 py-6 flex-auto">
                                 {body}
+                            </div>
                             {/* Footer */}
-                            <div className="flex flex-col gap2 py-6">
+                            <div className="flex flex-col gap2 px-32 py-6 ">
                                 <div className="flex flex-row items-center gap-4 w-full">
                                     { secondaryAction && secondaryActionLabel && (
                                     <Button 
@@ -109,8 +111,6 @@ const Modal: React.FC<ModalProps> = ({
                         </div>
                     </div>
                 </div>
-            </div>
-      </div>  
     );
 }
 

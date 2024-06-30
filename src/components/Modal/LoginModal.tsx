@@ -12,6 +12,7 @@ import {
 
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useRgisterModal from '@/app/hooks/useRegisterModal'
+
 import Modal from "./Modal";
 import Heading from "../Heading/Heading";
 import Input from "../inputs/Input";
@@ -31,7 +32,6 @@ const LoginModal = () => {
         }
     } = useForm<FieldValues>({
         defaultValues:{
-            name:'',
             email:'',
             password:'',
         }
@@ -76,7 +76,7 @@ const LoginModal = () => {
         <div className="flex flex-col items-center gap-4 w-full">
              <Heading
                 title="Welcome Back !!"
-                subtitle=""
+                subtitle="Login to your account"
                 center
              />
              <Input 
