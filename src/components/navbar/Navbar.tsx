@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "../Container"
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
@@ -10,7 +11,9 @@ const Navbar = () => {
             <div className="py-4 border-b-[1px]">
                 <Container>
                     <div className="flex flex-row justify-between items-center gap-3 md:gap-0">
+                        <Link href={"/"}>
                         <Logo />
+                        </Link>
                         <UserMenu />
                     </div>
                 </Container>
