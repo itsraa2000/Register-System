@@ -20,6 +20,8 @@ import Button from "../Button/Button";
 const RegisterModal = () => {
     const registerModal = useRgisterModal();
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
 
     const {
         register,
@@ -29,11 +31,13 @@ const RegisterModal = () => {
         }
     } = useForm<FieldValues>({
         defaultValues:{
-            name:'',
             email:'',
+            name:'',
             password:'',
             confirmPassword:'',
         }
+        
+        
     });
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -42,11 +46,14 @@ const RegisterModal = () => {
         try {
             localStorage.setItem('userData', JSON.stringify(data));
             registerModal.onClose();
+            toast.success('Register Success');
         } catch (error) {
             toast.error('Something Went Wrong.');
+            
         } finally {
             setIsLoading(false);
         }
+        console.log(data)
     }
 
     const footerContent = (
@@ -87,8 +94,8 @@ const RegisterModal = () => {
                 required
              />
              <Input 
-                id="username"
-                label="Username"
+                id="name"
+                label="Name"
                 disabled={isLoading}
                 register={register}
                 errors={errors}

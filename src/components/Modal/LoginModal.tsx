@@ -9,6 +9,8 @@ import {
     SubmitHandler,
     useForm,
 } from 'react-hook-form';
+import { useRouter  } from "next/navigation";
+
 
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useRgisterModal from '@/app/hooks/useRegisterModal'
@@ -23,6 +25,8 @@ const LoginModal = () => {
     const loginModal = useLoginModal();
     const registerModal = useRgisterModal();
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
 
     const {
         register,
@@ -41,13 +45,29 @@ const LoginModal = () => {
         setIsLoading(true);
 
         try {
-            localStorage.setItem('userData', JSON.stringify(data));
-            loginModal.onClose();
+            const storeUserdata = localStorage.getItem('userData');
+
+            if (!storeUserdata){
+                toast.error('User not found');
+                return;
+            }
+
+            const parsedUserData = JSON.parse(storeUserdata);
+
+            if (data.email === parsedUserData.email && data.password === parsedUserData.password) {
+                toast.success('Login success')
+                loginModal.onClose();
+                router.push('/dashboard')
+            } else {
+                toast.error('Invalid email or password')
+            }
         } catch (error) {
-            toast.error('Something Went Wrong.');
+            toast.error('Something went wrong.');
+            console.log(error)
         } finally {
             setIsLoading(false);
         }
+        
     }
 
     const footerContent = (
