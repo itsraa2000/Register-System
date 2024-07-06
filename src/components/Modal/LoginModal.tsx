@@ -10,10 +10,11 @@ import {
     useForm,
 } from 'react-hook-form';
 import { useRouter  } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 
-import useLoginModal from '@/app/hooks/useLoginModal'
-import useRgisterModal from '@/app/hooks/useRegisterModal'
+import useLoginModal from '@/app/hooks/useLoginModal';
+import useRgisterModal from '@/app/hooks/useRegisterModal';
 
 import Modal from "./Modal";
 import Heading from "../Heading/Heading";
@@ -23,7 +24,6 @@ import Button from "../Button/Button";
 
 const LoginModal = () => {
     const loginModal = useLoginModal();
-    const registerModal = useRgisterModal();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
@@ -43,31 +43,25 @@ const LoginModal = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
-
-        try {
-            const storeUserdata = localStorage.getItem('userData');
-
-            if (!storeUserdata){
-                toast.error('User not found');
-                return;
-            }
-
-            const parsedUserData = JSON.parse(storeUserdata);
-
-            if (data.email === parsedUserData.email && data.password === parsedUserData.password) {
-                toast.success('Login success')
-                loginModal.onClose();
-                router.push('/dashboard')
-            } else {
-                toast.error('Invalid email or password')
-            }
-        } catch (error) {
-            toast.error('Something went wrong.');
-            console.log(error)
-        } finally {
-            setIsLoading(false);
-        }
         
+        signIn('credentials', {
+            ...data,
+            redirect: false,
+        })
+        .then((callback) => {
+            setIsLoading(false);
+
+            if(callback?.ok){
+                toast.success('Logged In');
+                router.refresh();
+                loginModal.onClose();
+                router.push("/dashboard")
+            }
+
+            if(callback?.error){
+                toast.error(callback.error)
+            }
+        })
     }
 
     const footerContent = (

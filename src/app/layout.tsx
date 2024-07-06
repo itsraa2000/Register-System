@@ -6,6 +6,7 @@ import ToasterProvider from "@/components/Provider/ToastProvider";
 import RegisterModal from "@/components/Modal/RegisterModal";
 import LoginModal from "@/components/Modal/LoginModal";
 import Navbar from "@/components/navbar/Navbar";
+import getCurrentUser from "./action/getCurrentUser";
 
 
 export const metadata: Metadata = {
@@ -14,19 +15,22 @@ export const metadata: Metadata = {
   keywords: "Register , Login , System , Frontend , Backend and Next.js", 
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body>
         <UserProvider>
-          <Navbar />
           <ToasterProvider />
           <RegisterModal />
           <LoginModal />
+          <Navbar currentUser={currentUser} />
         </UserProvider>
         {children}
       </body>
