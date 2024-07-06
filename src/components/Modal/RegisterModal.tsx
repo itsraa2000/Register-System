@@ -34,7 +34,6 @@ const RegisterModal = () => {
             email:'',
             name:'',
             password:'',
-            confirmPassword:'',
         }
         
         
@@ -43,17 +42,18 @@ const RegisterModal = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
 
-        try {
-            localStorage.setItem('userData', JSON.stringify(data));
-            registerModal.onClose();
-            toast.success('Register Success');
-        } catch (error) {
-            toast.error('Something Went Wrong.');
-            
-        } finally {
-            setIsLoading(false);
-        }
-        console.log(data)
+        axios.post('/api/register', data)
+            .then(() => {
+                registerModal.onClose();
+                toast.success('Register Success');
+            })
+            .catch((error) => {
+                toast.error('Something went wrong');
+                console.log(error)
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }
 
     const footerContent = (
@@ -104,15 +104,6 @@ const RegisterModal = () => {
             <Input 
                 id="password"
                 label="Password"
-                type="password"
-                disabled={isLoading}
-                register={register}
-                errors={errors}
-                required
-             />
-            <Input 
-                id="confirmPassword"
-                label="Confirm Password"
                 type="password"
                 disabled={isLoading}
                 register={register}

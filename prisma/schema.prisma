@@ -19,5 +19,4 @@ model User {
   name    String?
   hashedPassword String?
   createAt DateTime @default(now())
-
 }
