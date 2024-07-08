@@ -9,6 +9,7 @@ import {
     SubmitHandler,
     useForm,
 } from 'react-hook-form';
+import { signIn } from "next-auth/react";
 
 import useRgisterModal from '@/app/hooks/useRegisterModal'
 import Modal from "./Modal";
@@ -63,7 +64,7 @@ const RegisterModal = () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => {}}
+                onClick={() => signIn('google')}
             />
             <div className="text-gray-500 text-center mt-4 font-light">
                 <div className="justify-center flex flex-row items-center gap-2">

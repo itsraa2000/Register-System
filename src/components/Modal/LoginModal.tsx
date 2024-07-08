@@ -71,7 +71,7 @@ const LoginModal = () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => {}}
+                onClick={() => signIn('google')}
             />
             <div className="text-gray-500 text-center mt-4 font-light">
                 <div className="justify-center flex flex-row items-center gap-2">
